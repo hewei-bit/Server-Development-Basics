@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/0voice2.dir/main2.c.o -o 0voice2 

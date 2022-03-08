@@ -1,0 +1,1 @@
+objs/main.o: main.c foo.h

@@ -1,0 +1,17 @@
+（1）课件-Makefile和CMake实战.pdf 
+对应源码：src-makefile和src-cmake
+
+（2）课件-CMake实战.pdf
+对应源码：src-cmake
+
+（3）参考-Makefile实战.pdf
+网页版: https://www.yuque.com/docs/share/8495ea21-9fdb-4e7b-aca2-babd86751e39?#  
+对应源码：src-cmake-makefile的Makefile目录
+
+
+（4）参考-CMake实战.pdf
+网页版: https://www.yuque.com/docs/share/d66b3695-cd45-43ca-bb3f-87f51ae589a6?#  
+对应源码：src-cmake-makefile的CMake目录
+
+作业：
+练习课上所讲内容。

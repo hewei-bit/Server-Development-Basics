@@ -1,0 +1,4 @@
+/mnt/hgfs/make/src-cmake/2.1-1/test/CMakeFiles/rebuild_cache.dir
+/mnt/hgfs/make/src-cmake/2.1-1/test/CMakeFiles/edit_cache.dir
+/mnt/hgfs/make/src-cmake/2.1-1/test/CMakeFiles/0voice2.dir
+/mnt/hgfs/make/src-cmake/2.1-1/test/CMakeFiles/0voice.dir
