@@ -2,7 +2,8 @@
 #include <memory>
 using namespace std;
 
-void DeleteIntPtr(int *p) {
+void DeleteIntPtr(int *p)
+{
     cout << "call DeleteIntPtr" << endl;
     delete p;
 }
@@ -10,12 +11,13 @@ void DeleteIntPtr(int *p) {
 int main()
 {
     std::shared_ptr<int> p(new int(1), DeleteIntPtr);
-    std::shared_ptr<int> p2(new int(1), [](int *p) {
+    std::shared_ptr<int> p2(new int(1), [](int *p)
+                            {
         cout << "call lambda1 delete p" << endl;
-        delete p;});
-    std::shared_ptr<int> p3(new int[10], [](int *p) {
+        delete p; });
+    std::shared_ptr<int> p3(new int[10], [](int *p)
+                            {
         cout << "call lambda2 delete p" << endl;
-        delete [] p; // 数组删除
-    });
+        delete [] p; });
     return 0;
 }
