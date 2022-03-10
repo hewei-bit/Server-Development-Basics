@@ -1,1 +1,0 @@
-objs/main.o deps/main.dep: main.c foo.h define.h other.h
