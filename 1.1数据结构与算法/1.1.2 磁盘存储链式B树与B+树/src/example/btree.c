@@ -6,21 +6,21 @@
 
 #include <assert.h>
 
-#define DEGREE 3
+#define DEGREE 3 // B树的阶数
 typedef int KEY_VALUE;
 
 typedef struct _btree_node
 {
-    KEY_VALUE *keys;
-    struct _btree_node **childrens;
-    int num;
-    int leaf;
+    KEY_VALUE *keys;                // 节点本身的keys
+    struct _btree_node **childrens; // 子结点的数组
+    int num;                        // 节点本身keys的数量
+    int leaf;                       // 是否是叶子节点 1：yes  0：no
 } btree_node;
 
 typedef struct _btree
 {
     btree_node *root;
-    int t;
+    int t; // 开始时的节点数量
 } btree;
 
 btree_node *btree_create_node(int t, int leaf)
@@ -56,6 +56,7 @@ void btree_create(btree *T, int t)
     T->root = x;
 }
 
+// x节点的第i颗子树进行分裂
 void btree_split_child(btree *T, btree_node *x, int i)
 {
     int t = T->t;
@@ -63,6 +64,7 @@ void btree_split_child(btree *T, btree_node *x, int i)
     btree_node *y = x->childrens[i];
     btree_node *z = btree_create_node(t, y->leaf);
 
+    // 新节点 z 的创建与赋值
     z->num = t - 1;
 
     int j = 0;
@@ -77,7 +79,7 @@ void btree_split_child(btree *T, btree_node *x, int i)
             z->childrens[j] = y->childrens[j + t];
         }
     }
-
+    //  把 z 连接到 x 下面，z并不一定是x的最末尾
     y->num = t - 1;
     for (j = x->num; j >= i + 1; j--)
     {
@@ -86,6 +88,7 @@ void btree_split_child(btree *T, btree_node *x, int i)
 
     x->childrens[i + 1] = z;
 
+    // 把 y 中被选中的keys放到 x 里面去
     for (j = x->num - 1; j >= i; j--)
     {
         x->keys[j + 1] = x->keys[j];
@@ -93,15 +96,15 @@ void btree_split_child(btree *T, btree_node *x, int i)
     x->keys[i] = y->keys[t - 1];
     x->num += 1;
 }
-
+// 插入一个不满的节点
 void btree_insert_nonfull(btree *T, btree_node *x, KEY_VALUE k)
 {
 
     int i = x->num - 1;
-
+    // 区分是否叶子节点
     if (x->leaf == 1)
     {
-
+        // 找到合适的位置把k插入，比k小的往后移
         while (i >= 0 && x->keys[i] > k)
         {
             x->keys[i + 1] = x->keys[i];
@@ -110,8 +113,10 @@ void btree_insert_nonfull(btree *T, btree_node *x, KEY_VALUE k)
         x->keys[i + 1] = k;
         x->num += 1;
     }
+    // 如果不是叶子节点先往孩子里面塞进去，如果孩子满了就把孩子先分裂了
     else
     {
+
         while (i >= 0 && x->keys[i] > k)
             i--;
 
@@ -121,7 +126,7 @@ void btree_insert_nonfull(btree *T, btree_node *x, KEY_VALUE k)
             if (k > x->keys[i + 1])
                 i++;
         }
-
+        // 递归
         btree_insert_nonfull(T, x->childrens[i + 1], k);
     }
 }
@@ -129,11 +134,12 @@ void btree_insert_nonfull(btree *T, btree_node *x, KEY_VALUE k)
 void btree_insert(btree *T, KEY_VALUE key)
 {
     // int t = T->t;
-
+    // 通过创造一个空的父节点来进行根节点的分裂
     btree_node *r = T->root;
+    // 如果满了就先分裂再插入
     if (r->num == 2 * T->t - 1)
     {
-
+        // 创造一个空的父节点，非叶子节点
         btree_node *node = btree_create_node(T->t, 0);
         T->root = node;
 
