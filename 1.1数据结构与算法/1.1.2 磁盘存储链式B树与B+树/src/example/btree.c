@@ -386,7 +386,7 @@ void btree_delete_key(btree *T, btree_node *node, KEY_VALUE key)
 
                     child->num++;
 
-                    node->key[idx - 1] = left->keys[left->num - 1];
+                    node->keys[idx - 1] = left->keys[left->num - 1];
                     left->keys[left->num - 1] = 0;
                     left->childrens[left->num] = NULL;
                     left->num--;
