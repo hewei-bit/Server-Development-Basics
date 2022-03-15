@@ -156,7 +156,6 @@ void rbtree_insert_fixup(rbtree *T, rbtree_node *z)
                 z->parent->color = BLACK;
                 y->color = BLACK;
                 z->parent->parent->color = RED;
-
                 z = z->parent->parent; // z --> RED
             }
             else
