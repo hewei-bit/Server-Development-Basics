@@ -7,13 +7,13 @@ void unordered_map_test()
     std::cout << "unordered_map_test\n";
     // 创建三个 string 的 unordered_map （映射到 string ）
     std::unordered_map<std::string, std::string> u = {
-        {"2RED","#FF0000"},
-        {"1GREEN","#00FF00"},
-        {"3BLUE","#0000FF"}
-    };
+        {"2RED", "#FF0000"},
+        {"1GREEN", "#00FF00"},
+        {"3BLUE", "#0000FF"}};
 
     // 迭代并打印 unordered_map 的关键和值
-    for( const auto& n : u ) {
+    for (const auto &n : u)
+    {
         std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
     }
 
@@ -30,13 +30,13 @@ void ordered_map_test()
     std::cout << "ordered_map_test\n";
     // 创建三个 string 的 unordered_map （映射到 string ）
     std::map<std::string, std::string> u = {
-        {"2RED","#FF0000"},
-        {"1GREEN","#00FF00"},
-        {"3BLUE","#0000FF"}
-    };
+        {"2RED", "#FF0000"},
+        {"1GREEN", "#00FF00"},
+        {"3BLUE", "#0000FF"}};
 
     // 迭代并打印 unordered_map 的关键和值
-    for( const auto& n : u ) {
+    for (const auto &n : u)
+    {
         std::cout << "Key:[" << n.first << "] Value:[" << n.second << "]\n";
     }
 
